@@ -5,352 +5,632 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Suresh Potluri — AI Solutions Architect, Sr. Product Engineering Lead. MROS+FinOS, taxInsights/Upsilon TaxPro, Forward Deployed @ Hitachi Rail.">
   <title>Suresh Potluri — AI Solutions Architect</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://github.com/potlurisuresh.png?size=32" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://github.com/potlurisuresh.png?size=64" sizes="64x64">
+  <link rel="apple-touch-icon" href="https://github.com/potlurisuresh.png?size=180">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; scroll-behavior: smooth; }
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --panel: #0b1220;
+      --panel-2: #132033;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.14);
+      --surface: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f4f6f9;
-      color: #1a1a2e;
+      font-family: 'Outfit', sans-serif;
+      color: var(--ink);
+      background: var(--surface);
       line-height: 1.65;
     }
-    a { color: #0d6efd; text-decoration: none; }
+    a { color: #0f766e; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    header {
-      background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-      color: white;
-      padding: 3.5rem 1.5rem 5rem;
-      text-align: center;
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(300px, 380px) 1fr;
     }
-    header h1 { margin: 0 0 0.4rem; font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 700; }
-    header .tagline { font-size: clamp(0.95rem, 2.5vw, 1.15rem); font-weight: 400; opacity: 0.95; max-width: 720px; margin: 0 auto 1.25rem; }
-    header .contact-bar {
+
+    /* Left panel — identity */
+    .panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      padding: 2.5rem 2rem;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(20,184,166,0.22), transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(56,189,248,0.12), transparent 35%),
+        linear-gradient(165deg, var(--panel) 0%, var(--panel-2) 100%);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .profile-photo {
+      width: 112px;
+      height: 112px;
+      border-radius: 28px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.15;
+    }
+    .brand .role {
+      margin: 0;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+    .location::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .panel-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+    .panel-nav a {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .panel-nav a:hover,
+    .panel-nav a.active {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .panel-cta {
       display: flex;
       flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      gap: 0.5rem 1.25rem;
-      font-size: 0.9rem;
-      margin-bottom: 1.75rem;
-    }
-    header .contact-bar a { color: #fff; opacity: 0.92; }
-    header .contact-bar a:hover { opacity: 1; text-decoration: underline; }
-    header nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.25rem; }
-    header nav a {
-      color: white;
-      font-weight: 600;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
       font-size: 0.88rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.15);
+      font-weight: 600;
+      text-decoration: none !important;
+      transition: transform 0.15s, background 0.2s;
     }
-    header nav a:hover { background: rgba(255,255,255,0.28); text-decoration: none; }
-
-    main {
-      max-width: 900px;
-      margin: -3rem auto 3rem;
-      padding: 0 1.25rem;
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #042f2e;
     }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-      padding: 1.75rem 2rem;
-      margin-bottom: 1.5rem;
+    .btn-ghost {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
-    h2 {
-      color: #0d6efd;
-      font-size: 1.25rem;
+    .panel-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      font-size: 0.85rem;
+    }
+    .panel-links a { color: #94a3b8; }
+    .panel-links a:hover { color: #fff; }
+
+    /* Right content */
+    .content {
+      padding: 2.5rem clamp(1.25rem, 4vw, 3.5rem) 4rem;
+      max-width: 920px;
+    }
+
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      animation: rise 0.6s ease both;
+    }
+    .hero-copy,
+    .hero-stats {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.6rem;
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f766e;
+      margin: 0 0 0.6rem;
+    }
+    .hero-copy h2 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--ink);
+      border: none;
+      padding: 0;
+    }
+    .hero-copy p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+    .hero-stats {
+      display: grid;
+      gap: 1rem;
+      align-content: center;
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .stat span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    section.block {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.6rem 1.7rem;
+      margin-bottom: 1.25rem;
+      animation: rise 0.7s ease both;
+    }
+    section.block:nth-of-type(2) { animation-delay: 0.05s; }
+    section.block:nth-of-type(3) { animation-delay: 0.1s; }
+
+    h2.section-title {
       margin: 0 0 1rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid #e8f0fe;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
     }
-    h3 { font-size: 1.05rem; margin: 1.5rem 0 0.4rem; color: #1a1a2e; }
+    h2.section-title::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    h3 {
+      font-size: 1.02rem;
+      margin: 1.4rem 0 0.35rem;
+      color: var(--ink);
+    }
     h3:first-of-type { margin-top: 0; }
-    h4 { font-size: 0.92rem; margin: 1rem 0 0.35rem; color: #495057; font-weight: 600; }
+    h4 {
+      font-size: 0.9rem;
+      margin: 1rem 0 0.35rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
 
-    .meta { font-size: 0.88rem; color: #6c757d; margin-bottom: 0.75rem; }
-    .meta strong { color: #495057; }
-
-    p { margin: 0 0 0.85rem; }
-    ul { margin: 0.25rem 0 0.85rem; padding-left: 1.35rem; }
+    p { margin: 0 0 0.85rem; color: var(--ink-soft); }
+    ul { margin: 0.25rem 0 0.85rem; padding-left: 1.2rem; color: var(--ink-soft); }
     li { margin-bottom: 0.35rem; }
 
-    .expertise-tags {
+    .meta { font-size: 0.86rem; color: var(--muted); margin-bottom: 0.65rem; }
+    .meta strong { color: var(--ink-soft); }
+    .stack { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; }
+
+    .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
     }
     .tag {
-      background: #e8f0fe;
-      color: #0d6efd;
+      background: var(--accent-soft);
+      color: #0f766e;
       font-size: 0.78rem;
       font-weight: 500;
-      padding: 0.25rem 0.65rem;
-      border-radius: 20px;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
     }
 
-    .product-block {
-      border-left: 3px solid #0d6efd;
-      padding-left: 1rem;
-      margin: 1.25rem 0;
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
     }
-    .product-block p.subtitle {
+    .product-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.1rem 1.15rem;
+      background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+    }
+    .product-card h3 { margin-top: 0; font-size: 1rem; }
+    .product-card .subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      font-family: 'Source Serif 4', Georgia, serif;
+    }
+
+    .skills-table,
+    .role-ref {
+      width: 100%;
+      border-collapse: collapse;
       font-size: 0.9rem;
-      color: #495057;
-      font-style: italic;
-      margin-bottom: 0.65rem;
     }
-    .stack {
-      font-size: 0.82rem;
-      color: #6c757d;
-      margin-top: 0.5rem;
-    }
-
-    .skills-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
     .skills-table th,
-    .skills-table td {
-      text-align: left;
-      padding: 0.55rem 0.75rem;
-      border-bottom: 1px solid #eef0f3;
-      vertical-align: top;
-    }
-    .skills-table th { width: 28%; color: #0d6efd; font-weight: 600; }
-    .skills-table tr:last-child th,
-    .skills-table tr:last-child td { border-bottom: none; }
-
-    .role-ref { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    .skills-table td,
     .role-ref th,
     .role-ref td {
       text-align: left;
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid #eef0f3;
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
     }
-    .role-ref th { background: #f8f9fb; color: #495057; font-weight: 600; }
+    .skills-table th { width: 28%; color: #0f766e; font-weight: 600; }
+    .role-ref th { background: #f1f5f9; color: var(--ink-soft); font-weight: 600; }
+    .skills-table tr:last-child th,
+    .skills-table tr:last-child td,
     .role-ref tr:last-child td { border-bottom: none; }
 
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
       font-size: 0.85rem;
-      color: #6c757d;
-      border-top: 1px solid #dde1e6;
+      color: var(--muted);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .panel {
+        position: relative;
+        height: auto;
+        min-height: auto;
+      }
+      .hero-banner,
+      .product-grid { grid-template-columns: 1fr; }
+      .panel-cta { margin-top: 0.5rem; }
     }
 
     @media (max-width: 600px) {
-      .card { padding: 1.25rem 1.25rem; }
+      .panel { padding: 1.75rem 1.25rem; }
+      .content { padding: 1.25rem 1rem 3rem; }
+      .profile-photo { width: 88px; height: 88px; border-radius: 22px; }
       .skills-table th { width: 35%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Suresh Potluri</h1>
-  <p class="tagline">AI Solutions Architect · Sr. Product Engineering Lead · Forward Deployed Engineer</p>
-  <div class="contact-bar">
-    <a href="tel:+19162398282">(916) 239-8282</a>
-    <a href="mailto:spotlur@gmail.com">spotlur@gmail.com</a>
-    <a href="https://sureshpotluri.com" target="_blank" rel="noopener">sureshpotluri.com</a>
-    <a href="https://linkedin.com/in/potlurisuresh" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/potlurisuresh" target="_blank" rel="noopener">GitHub</a>
-    <span>Mars, PA</span>
-  </div>
-  <nav>
-    <a href="#summary">Summary</a>
-    <a href="#products">Products</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<div class="shell">
 
-<main>
-
-  <section class="card" id="summary">
-    <h2>Professional Summary</h2>
-    <p>
-      AI Solutions Architect and Sr. Product Engineering Lead with <strong>20+ years</strong> of end-to-end product ownership — from patent idea and POC through Alpha, Beta, GA, and <strong>customer-site deployment</strong>. Founder-level builder at Maigha Inc delivering production SaaS across <strong>MROS + FinOS</strong> (unified retail operating system) and <strong>taxInsights</strong> (co-developed with <strong>Upsilon</strong> as <strong>Upsilon TaxPro</strong>) — multi-tenant platforms spanning storefront commerce, financial back office, and CPA tax workflows.
-    </p>
-    <p>
-      Expert at architecting complex systems (LLM/RAG, agentic workflows, embedded Linux, real-time streaming) while remaining hands-on across architecture, backend, frontend, AI layer, and CI/CD. Proven as sole technical owner on customer-facing engagements (Hitachi Rail Pittsburgh) and as leader of distributed teams across the US and India.
-    </p>
-    <div class="expertise-tags">
-      <span class="tag">AI-native SaaS</span>
-      <span class="tag">Multi-tenant ERP/GL</span>
-      <span class="tag">Full-stack web &amp; mobile</span>
-      <span class="tag">Embedded Linux / RTOS</span>
-      <span class="tag">Forward deployment</span>
-    </div>
-  </section>
-
-  <section class="card" id="products">
-    <h2>Flagship Products — Maigha Inc</h2>
-
-    <div class="product-block">
-      <h3>MROS + FinOS — Micro Retail Operating System</h3>
-      <p class="subtitle">Unified, multi-tenant platform for micro-retail: MROS powers the storefront; FinOS powers the back office.</p>
-
-      <h4>MROS — Storefront</h4>
-      <ul>
-        <li><strong>Customer journey:</strong> QR public menu → Stripe Connect / Square / cash checkout → order tracking; 2–3 tap purchase path</li>
-        <li><strong>Operator surfaces:</strong> Kitchen and counter queues with SSE realtime; walk-in and counter-pay flows; mobile parity (Expo iOS/Android)</li>
-        <li><strong>Transaction engine:</strong> Auditable order lifecycle; payment webhooks; inventory/COGS side effects</li>
-        <li><strong>Platform layer:</strong> Super-admin console for orgs, plans, billing, audit, and feature flags</li>
-      </ul>
-
-      <h4>FinOS — Back Office</h4>
-      <ul>
-        <li><strong>Single ledger:</strong> Double-entry GL, journals, P&amp;L, balance sheet, cash flow — every sale, refund, PO receive, and expense posts to one auditable books layer</li>
-        <li><strong>ERP modules:</strong> Purchasing, inventory, expenses, bills, documents, budgets, fixed assets — shared tenant isolation and RBAC with the storefront</li>
-        <li><strong>AI Inbox:</strong> Receipt OCR, smart categorization, anomaly detection, and human-approved suggestions</li>
-        <li><strong>Unified data:</strong> One audit log, one document store, role-scoped access (owner, accountant, purchasing, warehouse, viewer)</li>
-      </ul>
-
-      <h4>Shared Platform Engineering</h4>
-      <ul>
-        <li>npm/Turbo monorepos — Next.js 15 web, Expo mobile, PostgreSQL (Drizzle/RLS on MROS; Prisma/Rust ledger paths on FinOS), Better Auth + RBAC</li>
-        <li>AI assistants: Staff LLM (firm RBAC, guided writes) and platform operator LLM (cross-tenant tools, independent kill switches)</li>
-        <li>Docker local dev, staged CI/CD, pg_dump snapshots, Vitest/QA matrices</li>
-      </ul>
-      <p class="stack"><strong>Stack:</strong> TypeScript · Next.js · React · Expo · PostgreSQL · Drizzle · Prisma · Fastify · Rust · Better Auth · Stripe · Square · MinIO · Ollama · OpenAI-compatible LLM APIs</p>
+  <!-- LEFT: identity split panel -->
+  <aside class="panel" aria-label="Profile">
+    <div class="brand">
+      <img
+        class="profile-photo"
+        src="https://github.com/potlurisuresh.png?size=280"
+        alt="Suresh Potluri"
+        width="112"
+        height="112"
+        loading="eager"
+      >
+      <div>
+        <h1>Suresh Potluri</h1>
+        <p class="role">AI Solutions Architect · Sr. Product Engineering Lead · Forward Deployed Engineer</p>
+      </div>
+      <div class="location">Mars, PA · Pittsburgh area</div>
     </div>
 
-    <div class="product-block">
-      <h3>taxInsights (Upsilon TaxPro) — AI-Native Tax Platform for CPA Firms</h3>
-      <p class="subtitle">Software development partnership with Upsilon — jointly architect, build, and deliver Upsilon TaxPro.</p>
-      <ul>
-        <li><strong>Tax workflow:</strong> Scenario-centric Form 1040 + linked worksheets, side-by-side comparison, formula engine (42+ IRS formulas), Template Studio with Firm Template Releases (FTR), sandbox/bundle testing</li>
-        <li><strong>Document intelligence:</strong> Schema-driven Form 1040 PDF extraction with split-view verification; ML classification for W-2/1099/Schedule ingestion; anomaly detection</li>
-        <li><strong>Tax Insights AI (3-layer):</strong> Trigger detection on worksheet changes → RAG + LLM recommendations with PII anonymization → multi-turn copilot with rate limits and audit trail</li>
-        <li><strong>Enterprise:</strong> 64 Prisma models, RBAC, WebSocket collaborative sessions, database backup/restore, staging/prod deploy playbooks</li>
-        <li><strong>Maigha role:</strong> Lead architect and engineering partner — monorepo modernization, API modules, Template Studio V2, AI layer integration, production deployment to firm customers</li>
-      </ul>
-      <p class="stack"><strong>Stack:</strong> React 19 · Vite · Node 22 · Express 5 · Prisma · PostgreSQL · LangChain · OpenAI · Docker · Kubernetes · GitHub Actions</p>
+    <nav class="panel-nav" aria-label="Page sections">
+      <a href="#summary">Summary</a>
+      <a href="#products">Products</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="panel-cta">
+      <a class="btn btn-primary" href="mailto:spotlur@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/potlurisuresh" target="_blank" rel="noopener">LinkedIn</a>
     </div>
 
-    <h3>Additional Maigha Products</h3>
-    <ul>
-      <li><strong>AppAxioms</strong> — AI agent converts websites to iOS/Android apps; tool-calling pipeline with TestFlight/Play Console CI/CD</li>
-      <li><strong>MultiMagix</strong> — Agentic multi-platform video editing; FFMPEG core + ONNX DL models on 7 targets (desktop, mobile, RPi, AOSP)</li>
-      <li><strong>LeafSense</strong> — ROS2 edge AI plant health detector; MobileNetV3 on Raspberry Pi with INT8 ONNX (~190ms/frame)</li>
-      <li><strong>Organizational AI</strong> — YouTube automation, LLM documentation pipelines, Discord workflow bots</li>
-    </ul>
-  </section>
-
-  <section class="card" id="experience">
-    <h2>Professional Experience</h2>
-
-    <h3>Product Development Lead — Maigha Inc</h3>
-    <p class="meta"><strong>Aug 2021 – Present</strong> · Pittsburgh, PA · Remote/Hybrid</p>
-    <p>Principal architect and hands-on builder for AI-native SaaS portfolio. Own technical delivery across MROS + FinOS and taxInsights / Upsilon TaxPro — architecture, implementation, DevOps, and production scaling.</p>
-    <p class="stack">Python · Node.js · React · MERN · LangChain · LangGraph · LLM/RAG · FFMPEG · Docker · AWS · AOSP · RPi</p>
-
-    <h3>Forward Deployed Engineer — Hitachi Rail</h3>
-    <p class="meta"><strong>Aug 2019 – Sep 2023</strong> · Pittsburgh, PA (On-Board Systems Team)</p>
-    <p>Sole technical owner for end-to-end delivery of on-board rail software modernization — from legacy assessment through architecture, implementation, QA automation, customer acceptance, and field deployment.</p>
-    <ul>
-      <li><strong>End-to-end ownership:</strong> Single point of accountability for SESAM/CCB legacy overhaul — requirements, design, build, test, release, and deployment to customer hardware/trains</li>
-      <li><strong>Platform migration:</strong> Led Windows → Linux transition; ported Windows CE/C++ hardware code to Linux; rebuilt BSPs, RAM-bootable disk images, device drivers, and application APIs</li>
-      <li><strong>Next-gen SaaS UI:</strong> MERN-stack web/mobile application replacing legacy GUI; custom React Native plugins for field operator workflows</li>
-      <li><strong>Infrastructure &amp; DevOps:</strong> Introduced Jenkins + Docker CI/CD; built QA automation (Cypress, Jest, Selenium)</li>
-      <li><strong>Customer delivery:</strong> Built, validated, and deployed releases directly with customer integration teams; supported live rollouts on target rail systems</li>
-    </ul>
-    <p class="stack">Linux · Windows CE · C++ · Bash · MERN · React Native · Jenkins · Docker · Cypress · Jest · Selenium</p>
-
-    <h3>Lead Architect — Yaksee</h3>
-    <p class="meta"><strong>Sep 2011 – 2018</strong></p>
-    <p>Interactive broadcasting platform (web, iOS, Android, Smart TV, desktop). Proprietary RTP/RTSP streaming engine; WebRTC + FFMPEG; real-time whiteboard (Socket.io). Led 7-engineer distributed team (2 USA, 5 India). CI/CD: Jenkins, Docker, Kubernetes; AWS/Azure/GCP.</p>
-
-    <h3>Lead Architect / Software Consultant — 3K Technologies</h3>
-    <p class="meta"><strong>May 2009 – Aug 2021</strong> · Clients: Cymer/ASML · Ericsson · Cisco · Arris</p>
-    <ul>
-      <li><strong>ASML/Cymer:</strong> EUV lithography control software; first integrated light-source release; VxWorks/Linux drivers; State-Flow/MATLAB integration</li>
-      <li><strong>Ericsson:</strong> FTTN/IP DSLAM control; TL1/SNMP state machines; dynamic IP allocation</li>
-      <li><strong>Cisco:</strong> Netflow-lite CLI, XML-PI spec, Netflow-V9 export</li>
-      <li><strong>Arris:</strong> DOCSIS 2.0/Packetcable 2.0 VxWorks → Linux port; SNMP MIB agent</li>
-    </ul>
-
-    <h3>Lead Engineer — TandbergTV · Chelsio Communications · India</h3>
-    <p class="meta"><strong>2001 – 2009</strong></p>
-    <p>NDIS/WDM Windows drivers (802.11, 10GbE); WHQL certification; DVB-CAS/MPEG firmware; embedded Linux drivers; PCI diagnostics; BSOD resolution.</p>
-  </section>
-
-  <section class="card" id="skills">
-    <h2>Technical Strengths</h2>
-    <table class="skills-table">
-      <tr>
-        <th>AI / GenAI</th>
-        <td>LLM integration, RAG, agentic orchestration (LangChain, LangGraph, CrewAI), MCP, prompt engineering, PII-safe inference</td>
-      </tr>
-      <tr>
-        <th>Full-stack SaaS</th>
-        <td>React, Next.js, Node.js, TypeScript, MERN, REST APIs, multi-tenant RBAC, PostgreSQL, Prisma, Drizzle</td>
-      </tr>
-      <tr>
-        <th>Cloud &amp; DevOps</th>
-        <td>Docker, Kubernetes, Jenkins, GitHub Actions, AWS, Azure, GCP, staged rollouts, observability</td>
-      </tr>
-      <tr>
-        <th>Embedded / Systems</th>
-        <td>Linux BSP, VxWorks, Windows CE, C/C++, device drivers, NDIS/WDM, PCI/PCIe, FFMPEG, WebRTC</td>
-      </tr>
-      <tr>
-        <th>Mobile</th>
-        <td>React Native, Expo, Flutter, Cordova, iOS/Android store pipelines, AOSP, Raspberry Pi</td>
-      </tr>
-    </table>
-
-    <h3 style="margin-top: 1.75rem;">Project → Role Quick Reference</h3>
-    <table class="role-ref">
-      <tr>
-        <th>Project</th>
-        <th>Role</th>
-        <th>Best for</th>
-      </tr>
-      <tr>
-        <td><strong>MROS + FinOS</strong></td>
-        <td>Architect + full-stack lead</td>
-        <td>Retail SaaS, storefront + back office, payments, ERP/GL, multi-tenant, mobile</td>
-      </tr>
-      <tr>
-        <td><strong>taxInsights (Upsilon TaxPro)</strong></td>
-        <td>Lead architect · Maigha–Upsilon partnership</td>
-        <td>Tax/fintech, RAG, CPA workflows, compliance</td>
-      </tr>
-      <tr>
-        <td><strong>Hitachi Rail (FDE)</strong></td>
-        <td>Sole owner, customer deploy</td>
-        <td>Forward deployed, embedded, legacy modernization</td>
-      </tr>
-    </table>
-  </section>
-
-  <section class="card" id="contact">
-    <h2>Contact</h2>
-    <p>Open to senior architect, principal engineer, or forward-deployed roles. Hybrid Pittsburgh or remote.</p>
-    <p>
-      <a href="mailto:spotlur@gmail.com">spotlur@gmail.com</a> ·
-      <a href="tel:+19162398282">(916) 239-8282</a> ·
+    <div class="panel-links">
+      <a href="tel:+19162398282">(916) 239-8282</a>
       <a href="https://sureshpotluri.com" target="_blank" rel="noopener">sureshpotluri.com</a>
-    </p>
-    <p>
-      <a href="https://linkedin.com/in/potlurisuresh" target="_blank" rel="noopener">linkedin.com/in/potlurisuresh</a> ·
-      <a href="https://github.com/potlurisuresh" target="_blank" rel="noopener">github.com/potlurisuresh</a>
-    </p>
-    <p>271 Venango Trail, Mars, PA 16046</p>
-  </section>
+      <a href="https://github.com/potlurisuresh" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </aside>
 
-</main>
+  <!-- RIGHT: resume content -->
+  <main class="content">
 
-<footer>
-  &copy; 2026 Suresh Potluri · Maigha Inc. All rights reserved.
-</footer>
+    <div class="hero-banner">
+      <div class="hero-copy">
+        <p class="eyebrow">Open to opportunities</p>
+        <h2>Architecting AI-native SaaS from idea to customer-site deploy</h2>
+        <p>
+          Founder-level builder at Maigha Inc — <strong>MROS + FinOS</strong> retail OS and
+          <strong>taxInsights / Upsilon TaxPro</strong> — with prior sole ownership as Forward Deployed Engineer at Hitachi Rail Pittsburgh.
+        </p>
+      </div>
+      <div class="hero-stats" aria-label="Highlights">
+        <div class="stat">
+          <strong>20+ years</strong>
+          <span>End-to-end product ownership</span>
+        </div>
+        <div class="stat">
+          <strong>AI + Full-stack</strong>
+          <span>LLM/RAG, multi-tenant SaaS, embedded</span>
+        </div>
+        <div class="stat">
+          <strong>Hybrid / Remote</strong>
+          <span>Pittsburgh or remote</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="block" id="summary">
+      <h2 class="section-title">Professional Summary</h2>
+      <p>
+        AI Solutions Architect and Sr. Product Engineering Lead with <strong>20+ years</strong> of end-to-end product ownership — from patent idea and POC through Alpha, Beta, GA, and <strong>customer-site deployment</strong>. Founder-level builder at Maigha Inc delivering production SaaS across <strong>MROS + FinOS</strong> (unified retail operating system) and <strong>taxInsights</strong> (co-developed with <strong>Upsilon</strong> as <strong>Upsilon TaxPro</strong>) — multi-tenant platforms spanning storefront commerce, financial back office, and CPA tax workflows.
+      </p>
+      <p>
+        Expert at architecting complex systems (LLM/RAG, agentic workflows, embedded Linux, real-time streaming) while remaining hands-on across architecture, backend, frontend, AI layer, and CI/CD. Proven as sole technical owner on customer-facing engagements (Hitachi Rail Pittsburgh) and as leader of distributed teams across the US and India.
+      </p>
+      <div class="tags">
+        <span class="tag">AI-native SaaS</span>
+        <span class="tag">Multi-tenant ERP/GL</span>
+        <span class="tag">Full-stack web &amp; mobile</span>
+        <span class="tag">Embedded Linux / RTOS</span>
+        <span class="tag">Forward deployment</span>
+      </div>
+    </section>
+
+    <section class="block" id="products">
+      <h2 class="section-title">Flagship Products — Maigha Inc</h2>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <h3>MROS + FinOS</h3>
+          <p class="subtitle">Micro Retail Operating System — storefront + back office, one product vision.</p>
+
+          <h4>MROS — Storefront</h4>
+          <ul>
+            <li><strong>Customer journey:</strong> QR public menu → Stripe Connect / Square / cash checkout → order tracking; 2–3 tap purchase path</li>
+            <li><strong>Operator surfaces:</strong> Kitchen and counter queues with SSE realtime; walk-in and counter-pay; Expo iOS/Android</li>
+            <li><strong>Transaction engine:</strong> Auditable order lifecycle; payment webhooks; inventory/COGS side effects</li>
+            <li><strong>Platform layer:</strong> Super-admin for orgs, plans, billing, audit, feature flags</li>
+          </ul>
+
+          <h4>FinOS — Back Office</h4>
+          <ul>
+            <li><strong>Single ledger:</strong> Double-entry GL, journals, P&amp;L, balance sheet, cash flow</li>
+            <li><strong>ERP modules:</strong> Purchasing, inventory, expenses, bills, documents, budgets, fixed assets</li>
+            <li><strong>AI Inbox:</strong> Receipt OCR, categorization, anomaly detection, human-approved suggestions</li>
+            <li><strong>Unified data:</strong> One audit log, document store, role-scoped access</li>
+          </ul>
+
+          <p class="stack"><strong>Stack:</strong> TypeScript · Next.js · React · Expo · PostgreSQL · Drizzle · Prisma · Fastify · Rust · Better Auth · Stripe · Square · MinIO · Ollama · OpenAI-compatible LLMs</p>
+        </article>
+
+        <article class="product-card">
+          <h3>taxInsights (Upsilon TaxPro)</h3>
+          <p class="subtitle">AI-native tax platform for CPA firms — Maigha–Upsilon partnership.</p>
+          <ul>
+            <li><strong>Tax workflow:</strong> Form 1040 scenarios, formula engine (42+ IRS formulas), Template Studio / FTR, sandbox testing</li>
+            <li><strong>Document intelligence:</strong> Schema-driven PDF extraction; ML classification for W-2/1099/Schedule; anomaly detection</li>
+            <li><strong>Tax Insights AI:</strong> Triggers → RAG + LLM (PII-safe) → multi-turn copilot with audit trail</li>
+            <li><strong>Enterprise:</strong> 64 Prisma models, RBAC, WebSocket collab, backup/restore, staging/prod playbooks</li>
+            <li><strong>Maigha role:</strong> Lead architect — monorepo, APIs, Template Studio V2, AI layer, firm production rollout</li>
+          </ul>
+          <p class="stack"><strong>Stack:</strong> React 19 · Vite · Node 22 · Express 5 · Prisma · PostgreSQL · LangChain · OpenAI · Docker · Kubernetes · GitHub Actions</p>
+        </article>
+      </div>
+
+      <h3>Additional Maigha Products</h3>
+      <ul>
+        <li><strong>AppAxioms</strong> — AI agent converts websites to iOS/Android apps; tool-calling pipeline with TestFlight/Play Console CI/CD</li>
+        <li><strong>MultiMagix</strong> — Agentic multi-platform video editing; FFMPEG + ONNX on 7 targets</li>
+        <li><strong>LeafSense</strong> — ROS2 edge AI plant health detector on Raspberry Pi (~190ms/frame)</li>
+        <li><strong>Organizational AI</strong> — YouTube automation, LLM documentation pipelines, Discord bots</li>
+      </ul>
+    </section>
+
+    <section class="block" id="experience">
+      <h2 class="section-title">Professional Experience</h2>
+
+      <h3>Product Development Lead — Maigha Inc</h3>
+      <p class="meta"><strong>Aug 2021 – Present</strong> · Pittsburgh, PA · Remote/Hybrid</p>
+      <p>Principal architect and hands-on builder for AI-native SaaS portfolio. Own technical delivery across MROS + FinOS and taxInsights / Upsilon TaxPro — architecture, implementation, DevOps, and production scaling.</p>
+      <p class="stack">Python · Node.js · React · MERN · LangChain · LangGraph · LLM/RAG · FFMPEG · Docker · AWS · AOSP · RPi</p>
+
+      <h3>Forward Deployed Engineer — Hitachi Rail</h3>
+      <p class="meta"><strong>Aug 2019 – Sep 2023</strong> · Pittsburgh, PA (On-Board Systems Team)</p>
+      <p>Sole technical owner for end-to-end delivery of on-board rail software modernization — from legacy assessment through architecture, implementation, QA automation, customer acceptance, and field deployment.</p>
+      <ul>
+        <li><strong>End-to-end ownership:</strong> SESAM/CCB legacy overhaul — requirements through deployment to customer hardware/trains</li>
+        <li><strong>Platform migration:</strong> Windows → Linux; BSPs, RAM-bootable images, drivers, application APIs</li>
+        <li><strong>Next-gen SaaS UI:</strong> MERN web/mobile replacing legacy GUI; React Native field plugins</li>
+        <li><strong>Infrastructure &amp; DevOps:</strong> Jenkins + Docker CI/CD; Cypress, Jest, Selenium</li>
+        <li><strong>Customer delivery:</strong> Live rollouts and post-deployment stabilization with integration teams</li>
+      </ul>
+      <p class="stack">Linux · Windows CE · C++ · Bash · MERN · React Native · Jenkins · Docker · Cypress · Jest · Selenium</p>
+
+      <h3>Lead Architect — Yaksee</h3>
+      <p class="meta"><strong>Sep 2011 – 2018</strong></p>
+      <p>Interactive broadcasting platform (web, iOS, Android, Smart TV, desktop). Proprietary RTP/RTSP streaming; WebRTC + FFMPEG; real-time whiteboard (Socket.io). Led 7-engineer team (2 USA, 5 India). Jenkins, Docker, Kubernetes; AWS/Azure/GCP.</p>
+
+      <h3>Lead Architect / Software Consultant — 3K Technologies</h3>
+      <p class="meta"><strong>May 2009 – Aug 2021</strong> · Clients: Cymer/ASML · Ericsson · Cisco · Arris</p>
+      <ul>
+        <li><strong>ASML/Cymer:</strong> EUV lithography control; VxWorks/Linux drivers; State-Flow/MATLAB</li>
+        <li><strong>Ericsson:</strong> FTTN/IP DSLAM control; TL1/SNMP state machines</li>
+        <li><strong>Cisco:</strong> Netflow-lite CLI, XML-PI, Netflow-V9 export</li>
+        <li><strong>Arris:</strong> DOCSIS 2.0/Packetcable 2.0 VxWorks → Linux; SNMP MIB agent</li>
+      </ul>
+
+      <h3>Lead Engineer — TandbergTV · Chelsio Communications · India</h3>
+      <p class="meta"><strong>2001 – 2009</strong></p>
+      <p>NDIS/WDM Windows drivers (802.11, 10GbE); WHQL; DVB-CAS/MPEG firmware; embedded Linux drivers; PCI diagnostics; BSOD resolution.</p>
+    </section>
+
+    <section class="block" id="skills">
+      <h2 class="section-title">Technical Strengths</h2>
+      <table class="skills-table">
+        <tr>
+          <th>AI / GenAI</th>
+          <td>LLM integration, RAG, agentic orchestration (LangChain, LangGraph, CrewAI), MCP, prompt engineering, PII-safe inference</td>
+        </tr>
+        <tr>
+          <th>Full-stack SaaS</th>
+          <td>React, Next.js, Node.js, TypeScript, MERN, REST APIs, multi-tenant RBAC, PostgreSQL, Prisma, Drizzle</td>
+        </tr>
+        <tr>
+          <th>Cloud &amp; DevOps</th>
+          <td>Docker, Kubernetes, Jenkins, GitHub Actions, AWS, Azure, GCP, staged rollouts, observability</td>
+        </tr>
+        <tr>
+          <th>Embedded / Systems</th>
+          <td>Linux BSP, VxWorks, Windows CE, C/C++, device drivers, NDIS/WDM, PCI/PCIe, FFMPEG, WebRTC</td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <td>React Native, Expo, Flutter, Cordova, iOS/Android store pipelines, AOSP, Raspberry Pi</td>
+        </tr>
+      </table>
+
+      <h3 style="margin-top: 1.5rem;">Project → Role Quick Reference</h3>
+      <table class="role-ref">
+        <tr>
+          <th>Project</th>
+          <th>Role</th>
+          <th>Best for</th>
+        </tr>
+        <tr>
+          <td><strong>MROS + FinOS</strong></td>
+          <td>Architect + full-stack lead</td>
+          <td>Retail SaaS, storefront + back office, payments, ERP/GL</td>
+        </tr>
+        <tr>
+          <td><strong>taxInsights (Upsilon TaxPro)</strong></td>
+          <td>Lead architect · Maigha–Upsilon</td>
+          <td>Tax/fintech, RAG, CPA workflows</td>
+        </tr>
+        <tr>
+          <td><strong>Hitachi Rail (FDE)</strong></td>
+          <td>Sole owner, customer deploy</td>
+          <td>Forward deployed, embedded, legacy modernization</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="block" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p>Open to senior architect, principal engineer, or forward-deployed roles. Hybrid Pittsburgh or remote.</p>
+      <p>
+        <a href="mailto:spotlur@gmail.com">spotlur@gmail.com</a> ·
+        <a href="tel:+19162398282">(916) 239-8282</a> ·
+        <a href="https://sureshpotluri.com" target="_blank" rel="noopener">sureshpotluri.com</a>
+      </p>
+      <p>
+        <a href="https://linkedin.com/in/potlurisuresh" target="_blank" rel="noopener">linkedin.com/in/potlurisuresh</a> ·
+        <a href="https://github.com/potlurisuresh" target="_blank" rel="noopener">github.com/potlurisuresh</a>
+      </p>
+      <p>271 Venango Trail, Mars, PA 16046</p>
+    </section>
+
+    <footer>
+      &copy; 2026 Suresh Potluri · Maigha Inc. All rights reserved.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // Highlight active nav section while scrolling
+  const links = [...document.querySelectorAll('.panel-nav a')];
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = '#' + entry.target.id;
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    });
+  }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>
