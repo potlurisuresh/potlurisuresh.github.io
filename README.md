@@ -1,13 +1,8 @@
-# Suresh Potluri
+# potlurisuresh.github.io
 
-**AI Solutions Architect & Founder, Maigha Inc**
+GitHub Pages for https://potlurisuresh.github.io/
 
-Personal site (canonical): **[sureshpotluri.com](https://sureshpotluri.com/)**
+**Status:** pointer only. Canonical executive site is **https://sureshpotluri.com/**  
+Profile: https://github.com/potlurisuresh
 
-- [TaxPro / taxInsights](https://sureshpotluri.com/portfolio/taxpro/)
-- [MROS + FinOS](https://sureshpotluri.com/portfolio/mros/)
-- [About](https://sureshpotluri.com/about/) · [Contact](https://sureshpotluri.com/contact/)
-- Company: [maigha.com](https://maigha.com/)
-- LinkedIn: [potlurisuresh](https://www.linkedin.com/in/potlurisuresh)
-
-Email: suresh@maigha.com
+Do not rebuild a full second personal site here — it drifts from Aura production.
